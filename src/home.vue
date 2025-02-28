@@ -3,7 +3,7 @@ import { reactive } from "vue";
 import GridPatternDashed from "@/components/grid-pattern/grid-pattern-dashed.vue";
 
 defineOptions({
-  name: "Demo"
+  name: "home"
 });
 
 const contentList = reactive([

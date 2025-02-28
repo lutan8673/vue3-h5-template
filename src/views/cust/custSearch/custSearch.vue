@@ -1,0 +1,7 @@
+<template>
+  <div class="">客户搜索</div>
+</template>
+<script setup lang="ts">
+import { ref, reactive } from "vue";
+</script>
+<style lang="less" scoped></style>
