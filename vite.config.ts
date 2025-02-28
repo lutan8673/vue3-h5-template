@@ -10,7 +10,6 @@ import mockDevServerPlugin from "vite-plugin-mock-dev-server";
 import viteCompression from "vite-plugin-compression";
 import { createHtmlPlugin } from "vite-plugin-html";
 import { enableCDN } from "./build/cdn";
-import routerImportPlugin from "./build/routerImportPlugin";
 
 // 当前工作目录路径
 const root: string = process.cwd();
@@ -28,7 +27,6 @@ export default defineConfig(({ mode }) => {
     root: "./",
     base: env.VITE_PUBLIC_PATH || "./",
     plugins: [
-      routerImportPlugin(),
       vue(),
       vueJsx(),
       mockDevServerPlugin(),
@@ -84,7 +82,7 @@ export default defineConfig(({ mode }) => {
       emptyOutDir: true, //Vite 会在构建时清空该目录
       terserOptions: {
         compress: {
-          keep_infinity: true, // 防止 Infinity 被压缩成 1/0，这可能会导致 Chrome 上的性能问题
+          keep_infinity: true, // 防止 Infinity 被压缩成 1/0
           drop_console: true, // 生产环境去除 console
           drop_debugger: true // 生产环境去除 debugger
         },

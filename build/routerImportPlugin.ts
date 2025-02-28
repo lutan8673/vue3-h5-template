@@ -2,14 +2,18 @@ import { createFilter } from "vite";
 
 let buildData, env;
 const indexReg = new RegExp("src/router/index.prod.ts$");
+export interface BuildData {
+  module: string;
+  name: string;
+}
 
-export default function routerImportPlugin() {
+export default function routerImportPlugin(buildItem: BuildData) {
   return {
     name: "router-import-plugin",
 
     config(config, { mode }) {
       env = mode;
-      buildData = config.data;
+      buildData = buildItem;
     },
 
     transform(code, id) {

@@ -10,13 +10,6 @@ import NProgress from "@/utils/progress";
 import { useCachedViewStoreHook } from "@/store/modules/cached-view";
 import setPageTitle from "@/utils/set-page-title";
 
-export interface toRouteType extends RouteLocationNormalized {
-  meta: {
-    title?: string;
-    keepAlive?: boolean;
-  };
-}
-
 const routers: Array<RouteRecordRaw> = [
   {
     path: "/",

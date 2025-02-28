@@ -4,7 +4,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import chalk from "chalk";
 import zipPack from "vite-plugin-zip-pack";
-// import routerImportPlugin from "./routerImportPlugin";
+import routerImportPlugin from "./routerImportPlugin";
+import type { BuildData } from "./routerImportPlugin";
 
 // 获取当前文件的目录名
 const __filename = fileURLToPath(import.meta.url);
@@ -68,14 +69,14 @@ console.log("文件列表:", buildList);
 const runBuild = async function () {
   try {
     const item = buildList.shift();
+    const buildItem: BuildData = {
+      module: item.module,
+      name: item.name
+    };
     await build({
-      data: {
-        module: item.module,
-        name: item.name
-      },
       root: "./",
       plugins: [
-        // routerImportPlugin(),
+        routerImportPlugin(buildItem),
         {
           name: "error-handler",
           buildStart: () => buildStartFn(item.name),

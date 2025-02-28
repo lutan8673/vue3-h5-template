@@ -20,9 +20,7 @@
     "lib": ["ESNext", "DOM"],
     "paths": {
       "@/*": ["./src/*"],
-      "@views/*": ["./src/views/*"],
-      "@build/*": ["./build/*"]
-      
+      "@views/*": ["./src/views/*"]
     },
     "types": ["node", "vite/client"]
   },

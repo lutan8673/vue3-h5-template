@@ -31,7 +31,7 @@ const contentList = reactive([
     <img
       class="block w-[120px] mx-auto mb-[30px] pt-[40px]"
       alt="Vue logo"
-      src="~@/assets/logo_melomini.png"
+      src="~@/assets/logo_vue3_ts.png"
     />
     <div
       class="text-[14px] py-[12px] px-[20px] rounded-[12px] bg-[var(--color-block-background)] mt-[14px]"
