@@ -1,14 +1,14 @@
 {
   "name": "vue3-h5-template",
-  "homepage": "https://yulimchen.github.io/vue3-h5-template/",
-  "version": "0.7.0",
+  "homepage": "https://github.com/lutan8673/vue3-h5-template/",
+  "version": "1.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yulimchen/vue3-h5-template.git"
+    "url": "https://github.com/lutan8673/vue3-h5-template.git"
   },
   "bugs": {
-    "url": "https://github.com/yulimchen/vue3-h5-template/issues"
+    "url": "https://github.com/lutan8673/vue3-h5-template/issues"
   },
   "engines": {
     "node": ">= 18",
@@ -68,6 +68,7 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
+    "rollup-plugin-visualizer": "^5.14.0",
     "standard-version": "^9.5.0",
     "tailwindcss": "^3.4.14",
     "tsx": "^4.19.3",
@@ -75,7 +76,7 @@
     "typescript-eslint": "^8.12.2",
     "unplugin-vue-components": "^0.27.4",
     "vite": "^5.4.10",
-    "vite-plugin-cdn2": "^1.1.0",
+    "vite-plugin-cdn-import": "^1.0.1",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-mock-dev-server": "^1.8.0",

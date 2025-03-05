@@ -1,5 +1,6 @@
 import { fileURLToPath, URL } from "node:url";
 import { defineConfig, loadEnv } from "vite";
+import type { PluginOption } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import Components from "unplugin-vue-components/vite";
@@ -9,10 +10,15 @@ import path from "path";
 import mockDevServerPlugin from "vite-plugin-mock-dev-server";
 import viteCompression from "vite-plugin-compression";
 import { createHtmlPlugin } from "vite-plugin-html";
+import { visualizer } from "rollup-plugin-visualizer";
+import { cdnPlugin } from "./build/plugin/cdnPlugin";
 import { enableCDN } from "./build/cdn";
 
 // 当前工作目录路径
 const root: string = process.cwd();
+const args = process.argv.slice(2);
+const isDev = args.includes("dev");
+console.log("isDev", isDev);
 
 export default defineConfig(({ mode }) => {
   // 环境变量
@@ -50,13 +56,24 @@ export default defineConfig(({ mode }) => {
         entry: entryFile,
         inject: {
           data: {
-            ENABLE_ERUDA: env.VITE_ENABLE_ERUDA || "false"
+            ENABLE_ERUDA: isDev ? "true" : env.VITE_ENABLE_ERUDA || "false"
           }
         }
       }),
       // 生产环境默认不启用 CDN 加速
-      enableCDN(env.VITE_CDN_DEPS)
-    ],
+      // enableCDN(env.VITE_CDN_DEPS),
+      // enableCDN("true"),
+      // cdnPlugin(env.VITE_CDN_DEPS),
+      // cdnPlugin("true"),
+      env.VITE_VISUALIZER === "true" &&
+        visualizer({
+          template: "treemap",
+          filename: "dist/bundle-analysis.html",
+          open: true,
+          gzipSize: true,
+          brotliSize: true
+        })
+    ].filter(Boolean) as PluginOption[],
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
@@ -67,9 +84,8 @@ export default defineConfig(({ mode }) => {
       host: "localhost", // 指定服务器主机名
       port: 8888, // 指定服务器端口
       hmr: true, // 开启热更新
-      // open: true,
+      open: true,
       // 仅在 proxy 中配置的代理前缀， mock-dev-server 才会拦截并 mock
-      // doc: https://github.com/pengzhanbo/vite-plugin-mock-dev-server
       proxy: {
         "^/dev-api": {
           target: ""
@@ -78,7 +94,7 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       outDir: path.resolve(__dirname, "dist"), // 指定输出路径
-      assetsInlineLimit: 4096, //小于此阈值的导入或引用资源将内联为 base64 编码，以避免额外的 http 请求
+      assetsInlineLimit: 4096, //小于此阈值的导入或引用资源将内联为 base64
       emptyOutDir: true, //Vite 会在构建时清空该目录
       terserOptions: {
         compress: {

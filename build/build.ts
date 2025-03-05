@@ -4,8 +4,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import chalk from "chalk";
 import zipPack from "vite-plugin-zip-pack";
-import routerImportPlugin from "./routerImportPlugin";
-import type { BuildData } from "./routerImportPlugin";
+import routerImportPlugin from "./plugin/routerImportPlugin";
+import type { BuildData } from "./plugin/routerImportPlugin";
 
 // 获取当前文件的目录名
 const __filename = fileURLToPath(import.meta.url);

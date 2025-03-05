@@ -1,9 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import type {
-  RouteRecordRaw,
-  Router,
-  RouteLocationNormalized
-} from "vue-router";
+import type { RouteRecordRaw, Router } from "vue-router";
 import login from "@/login.vue";
 import home from "@/home.vue";
 import NProgress from "@/utils/progress";
